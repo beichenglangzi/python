@@ -1,3 +1,5 @@
+import os
+import shutil
 
 class CopyFileExcute:
     def __init__(self):
@@ -25,4 +27,14 @@ class CopyFileExcute:
          print("Hello Class CopyFileExcete")
 
 
+    def removeFoldAndFile(self,path: object):
+        shutil.rmtree(path)
 
+    def removeEmptyFolder(self,path:object):
+        os.rmdir(path)
+
+    def rename(self,oldName,newName):
+        os.rename(oldName,newName)
+
+    def changePah(self,path):
+        os.chdir(path)
