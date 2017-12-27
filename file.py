@@ -1,6 +1,8 @@
 #encoding:utf-8
 import os
 import shutil
+from Pythonclass import CopyFileExcute
+
 #这是中午
 print ("HellWorld")
 document = open("testfile.txt", "w+")
@@ -39,16 +41,50 @@ else:
 
 folder1 = currentPath + "/tools"
 
-if os.path.exists(folder1):
-    os.removedirs(folder1)#只能删除空的文件夹
+if not os.path.exists(folder1):
+    #os.removedirs(folder1)#只能删除空的文件夹
+    os.mkdir(folder1)
 
-os.mkdir(folder1)
+
 
 
 folder2 = currentPath + "/tool"
 
-if os.path.exists(folder2)
+if not os.path.exists(folder2):
+   os.mkdir(folder2)
 
+toolFileName = folder2 + "/text.txt"
+f = open(toolFileName,"w+")
+f.write(paragraph)
+f.flush()
+f.seek(0)
+print(f.read())
+print("toolFileName")
+f.close()
+print(toolFileName)
 
+#os.chdir(folder1)
+print("当前路径"+os.getcwd())
+
+toolsFilePath = folder1+"/text.txt"
+if not os.path.exists(toolsFilePath):
+    fp = open(toolsFilePath,"w+")
+    fp.close()
+print(toolsFilePath)
+'''
+#copy 文件从tool 到 tools
+
+shutil.copyfile(folder1,toolFileName)
+print(os.listdir(folder1))
+f = open("text.txt")
+f.seek(0)
+print(f.read())
+f.close()
+'''
+print("-----")
+print(toolFileName)
+print(toolsFilePath)
+print("-----")
+CopyFileExcute.copyFile(toolFileName,toolsFilePath)
 
 
