@@ -1,0 +1,115 @@
+ 6228480128130815771
+X431_iDiag_Asia
+
+itms-90122
+
+http://mycar.x431.com/install/showSysInstallApps.action?title=X431_iDiag_Asia&appIndex=1
+
+
+
+https://192.168.0.219/svn/diag/AndroidTestAndRelse/ios/golo/2016-1-16/
+
+
+EasyDiagAsia
+3.17.005
+com.launch.EasyDiagAsiaCar
+修复英菲尼迪提示ecu通讯失败的问题
+
+
+#import "SharedDataManager.h"
+
+showPackageType
+spt_ggp_name = 26
+spt_ggp_pathname = 52
+
+-(id)processGetGGPPath;
+-(id)processGetGGPName;
+
+-(id)processGetGGPPath{
+    return [SharedDataParser processSptGetGGPPath];
+}
+
+-(id)processGetGGPName{
+    return [SharedDataParser processSptGetGGPName];
+}
+
+
+
+#import "SharedDataParser.h"
+
++(id)processSptGetGGPPath;
++(id)processSptGetGGPName;
+
++(id)processSptGetGGPPath{
+    BYTE *pData = [SharedDataParser getDiagnosticDataAddress];
+    showPackageType  iType =(showPackageType)[SharedDataParser getshowPackageType];
+    
+    
+    NSString *ggpPath = nil;
+    NSString* bzf = nil;
+    if (iType == spt_ggp_pathname) {
+        char szFileName[512] = {0};
+        strcpy(szFileName,  (char *)(pData));
+        ggpPath = [NSString stringWithCString:szFileName encoding:getCurrentEncoding()];
+        char bzName[512] = {0};
+        strcpy(bzName,  (char *)(pData  + (int)strlen(szFileName) + 1 ));
+         bzf = [NSString stringWithCString:bzName encoding:getCurrentEncoding()];
+        if ([bzf isEqualToString:@"NewFmt"]) {
+            NSLog(@"processSptGetGGPPath 解析正确");
+        }
+    }
+    return checkNull(ggpPath);
+    
+}
++(id)processSptGetGGPName{
+    BYTE *pData = [SharedDataParser getDiagnosticDataAddress];
+    showPackageType  iType =(showPackageType)[SharedDataParser getshowPackageType];
+    NSString *ggpName = nil;
+    if (iType == spt_ggp_name) {
+        char szFileName[512] = {0};
+        strcpy(szFileName,  (char *)(pData));
+        ggpName = [NSString stringWithCString:szFileName encoding:getCurrentEncoding()];
+    }
+    return checkNull(ggpName);
+}
+
+
+#import "GODiagnoseMessage.h"
+
+     case spt_ggp_name:
+            [self getGGPName];
+            break;
+     case  spt_ggp_pathname:
+            [self getGGPPathName];
+            break;
+
+
+-(void)getGGPName{
+    //    1 byte   0为成功， 其它值为失败
+    NSString* ggpName = [[SharedDataManager sharedManager]processGetGGPName];
+ showPackageType currPackageType = [dataManager getshowPackageType];
+    Byte ucResultType = 0x00;
+    if (0) {
+        ucResultType = 0x01;
+    }
+    [dataManager sendDataToDiagnosticThread:currPackageType length:1 data:&ucResultType];
+    
+}
+-(void)getGGPPathName{
+//    1 byte   0为成功， 其它值为失败
+     NSString* ggpPath = [[SharedDataManager sharedManager]processGetGGPPath];
+    showPackageType currPackageType = [dataManager getshowPackageType];
+    Byte ucResultType = 0x00;
+    if (0) {
+        ucResultType = 0x01;
+    }
+    [dataManager sendDataToDiagnosticThread:currPackageType length:1 data:&ucResultType];
+}
+
+
+
+if (_connect_timeout > 15) {
+        if ([self.statedelegate respondsToSelector:@selector(blueToothWithState:)]) {
+            [self.statedelegate blueToothWithState:bt_ScanTimeout];
+        }
+    }
