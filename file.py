@@ -1,14 +1,18 @@
 #encoding:utf-8
 import os
 import shutil
-from Pythonclass import CopyFileExcute
+import sys
+path = os.getcwd()
+sys.path.append(path)
+import FileClass
+from A import ClassA
 
-#这是中午
-print ("HellWorld")
 document = open("testfile.txt", "w+")
 print ("文件名: ", document.name)
 document.write("这是我创建的第一个测试文件！\nwelcome!")
-print (document.tell())
+print ("tell",document.tell())
+document.write("这是我创建的第2个测试文件！\nwelcome!")
+document.write("这是我创建的第3个测试文件！\nwelcome!")
 #输出当前指针位置
 document.seek(os.SEEK_SET)
 #设置指针回到文件最初
@@ -19,6 +23,7 @@ document.close()
 
 f = open("text.txt","w+")
 paragraph = """
+111111111
 白日依山尽，
 黄河入海流。
 欲穷千里目，
@@ -34,7 +39,6 @@ print ("listFileName",listFileName)
 
 filePath = currentPath + "/text.txt"
 if os.path.exists(filePath):
-    print  ("Flie text.txt is Exist")
     os.remove(filePath)
 else:
     print  ("Flie text.txt is not Exist")
@@ -44,9 +48,6 @@ folder1 = currentPath + "/tools"
 if not os.path.exists(folder1):
     #os.removedirs(folder1)#只能删除空的文件夹
     os.mkdir(folder1)
-
-
-
 
 folder2 = currentPath + "/tool"
 
@@ -58,10 +59,11 @@ f = open(toolFileName,"w+")
 f.write(paragraph)
 f.flush()
 f.seek(0)
+
 print(f.read())
-print("toolFileName")
+
 f.close()
-print(toolFileName)
+
 
 #os.chdir(folder1)
 print("当前路径"+os.getcwd())
@@ -70,7 +72,7 @@ toolsFilePath = folder1+"/text.txt"
 if not os.path.exists(toolsFilePath):
     fp = open(toolsFilePath,"w+")
     fp.close()
-print(toolsFilePath)
+
 '''
 #copy 文件从tool 到 tools
 
@@ -81,10 +83,15 @@ f.seek(0)
 print(f.read())
 f.close()
 '''
-print("-----")
-print(toolFileName)
-print(toolsFilePath)
-print("-----")
-CopyFileExcute.copyFile(toolFileName,toolsFilePath)
+
+
+FileClass.CopyFileExcute.copyFile(toolFileName,toolsFilePath)
+
+FileClass.CopyFileExcute.cprint(FileClass)
+
+aclass = ClassA(2,3)
+aclass.add()
+ClassA.cPrint(ClassA)
+
 
 
