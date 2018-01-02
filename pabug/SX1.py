@@ -2,6 +2,12 @@
 import urllib.request
 import urllib.parse
 import json
+import sys
+import os
+path = os.getcwd()
+print(path)
+sys.path.append(path)
+import Manager
 
 def login(name='cl1234',password='000000'):
     pargram = {
@@ -25,7 +31,19 @@ def login(name='cl1234',password='000000'):
     return  f.read().decode('utf-8')
 
 
-logDic = json.loads(login())
+logDic =  json.loads(login())
+data = logDic['data']
 print(logDic)
 print(logDic['code'])
 print(logDic['data'])
+
+u = Manager.User()
+u.token = data['token']
+u.token1 = data['token']
+u.user_id = data['user']['user_id']
+u.user_name = data['user']['user_name']
+u.nick_name = data['user']['nick_name']
+u.email = data['user']['email']
+print(u.token1)
+
+

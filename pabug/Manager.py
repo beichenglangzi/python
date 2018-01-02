@@ -3,6 +3,12 @@ from tokenize import String
 
 
 class User:
+    def __init__(self):
+        print()
+    def __del__(self):
+        print()
+    def userPrint(self):
+        print(self)
     #定义基本属性
 
     mode: String
@@ -75,3 +81,4 @@ class User:
     account: String
 
     password: String
+

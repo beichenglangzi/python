@@ -7,3 +7,6 @@ class ClassA:
     
     def add(self) -> object:
         print("x和y的和为：%d"%(self.x+self.y))
+    classmethod #类方法
+    def foo(self):
+        print('类方法')
