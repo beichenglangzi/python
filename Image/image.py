@@ -44,3 +44,4 @@ for i in range(100, 200, 5):
     draw.line([(i, 0), (200, i - 100)], fill='green')
 
 im.save("drawing.png")
+# http://blog.csdn.net/xiaodangshan/article/details/64540157
