@@ -1,5 +1,6 @@
 from PIL import ImageColor
-from PIL import Image,ImageDraw
+from PIL import Image,ImageDraw,ImageFont
+import os
 b = ImageColor.getcolor('Red','RGBA')
 # print(b)
 
@@ -35,13 +36,14 @@ im.save("mapImage.png")
 im = Image.new('RGBA',(200,200),'white')
 draw = ImageDraw.Draw(im)
 draw.line([(0, 0), (199, 0), (199, 199), (0, 199), (0, 0)], fill='black')
-draw.rectangle((20, 30, 60, 60), fill='blue')
-draw.ellipse((120, 30, 160, 60), fill='red')
+draw.rectangle((20, 30, 60, 60), fill='blue')   #正方形
+draw.ellipse((120, 30, 160, 60), fill='red')          
 draw.polygon(((57, 87), (79, 62), (94, 85), (120, 90), (103, 113)),
 fill='brown')
 for i in range(100, 200, 5):
-    print(i)
     draw.line([(i, 0), (200, i - 100)], fill='green')
 
+draw.text((20, 150), 'Hello', fill='purple')
+draw.text((100, 150), 'Howdy', fill='gray')
 im.save("drawing.png")
 # http://blog.csdn.net/xiaodangshan/article/details/64540157
