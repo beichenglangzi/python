@@ -51,3 +51,5 @@ def imageBatch():
         print("要处理的文件夹为空，请放入要处理的图片")
 
 imageBatch()
+
+
