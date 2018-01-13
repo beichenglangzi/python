@@ -9,6 +9,7 @@ class Ptrancefrom(object):
         self.width = width
         self.heigth = heigth
         self.ascii_char = list("$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. ")
+        self.ascii_char = list("zxcvbnmasdfghjkl;qwertyuiop[1234567890- ")
     def get_char(self,r,b,g,a):
 
         if a == 0:

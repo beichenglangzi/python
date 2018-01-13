@@ -9,7 +9,7 @@ print(path)
 sys.path.append(path)
 import Manager
 
-def login(name='cl1234',password='000000'):
+def login(name='cl1234',password='111111'):
     pargram = {
         'login_key':name,
         'password': password,
@@ -28,10 +28,11 @@ def login(name='cl1234',password='000000'):
     f = urllib.request.urlopen(request,strParam)
     # print(strParam)
     # print(f.read().decode('utf-8'))
-    return  f.read().decode('utf-8')
+    return f.read().decode('utf-8')
 
 
-logDic =  json.loads(login())
+logDic = json.loads(login())
+print(logDic)
 data = logDic['data']
 print(logDic)
 print(logDic['code'])
