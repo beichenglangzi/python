@@ -1,7 +1,7 @@
 import PIL
 from PIL import Image
 import os
-import xlwt
+
 class Ptrancefrom(object):
 
     def __init__(self,img,width,heigth):
