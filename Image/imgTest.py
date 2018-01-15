@@ -1,5 +1,6 @@
 from PIL import ImageColor
 from PIL import Image
+import colorsys
 import os
 
 # col = ImageColor.getcolor('red','RGBA')
@@ -50,6 +51,48 @@ def imageBatch():
     else:
         print("要处理的文件夹为空，请放入要处理的图片")
 
-imageBatch()
+# imageBatch()
 
+
+
+def getAllColorsFromImage():
+    colorArr = []
+    imW = 0
+    imH = 0
+    imgPath = "dog.png"
+    path = os.getcwd()
+    father_path = os.path.abspath(os.path.dirname(path) + os.path.sep + ".")
+    grader_father = os.path.abspath(os.path.dirname(path) + os.path.sep + "..")
+    imgPath = father_path + "/Image" + "/dog.png"
+    if not imgPath:
+        imgPath = "dog.png"
+
+    if os.path.exists(imgPath):
+        im = Image.open(imgPath)
+        assert isinstance(im,Image.Image)
+        im = im.convert("RGBA")
+        (imW, imH) = im.size
+        maxEdage = 200
+        if (imW > maxEdage or imH > maxEdage):
+            temp = max(imH,imW)
+            imW = int(imW*maxEdage/temp)
+            imH = int(imH*maxEdage/temp)
+            im.thumbnail((imW,imH))
+            im.save("thumbnail.png")
+
+        for i in range(imW):
+            for j in range(imH):
+                # print("ij",i,j)
+                # print(im.getpixel((i,j)))
+                # (r, g, b, a) = im.getpixel((j, i))
+                # # print(r,g,b,a)
+                # # print(im.getpixel((j, i)))
+                # print(type(im.getpixel((i,j))))
+                colorArr.append(im.getpixel((i,j)))
+
+    else:
+        print("path is error")
+
+    return (colorArr, imW, imH)
+# print(getAllColorsFromImage())
 
