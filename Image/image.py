@@ -1,5 +1,5 @@
 from PIL import ImageColor
-from PIL import Image,ImageDraw,ImageFont
+from PIL import Image,ImageDraw,ImageFont,ImageFilter
 import os
 b = ImageColor.getcolor('Red','RGBA')
 # print(b)
@@ -47,3 +47,26 @@ draw.text((20, 150), 'Hello', fill='purple')
 draw.text((100, 150), 'Howdy', fill='gray')
 im.save("drawing.png")
 # http://blog.csdn.net/xiaodangshan/article/details/64540157
+
+#指定图片存放位置
+imagePath = "/Users/chenjinlong/Desktop/downloadImage"
+
+im = Image.open('he.png')
+# 高斯模糊
+im.filter(ImageFilter.GaussianBlur).save(r'/Users/chenjinlong/Desktop/downloadImage/GaussianBlur.png')
+# 普通模糊
+im.filter(ImageFilter.BLUR).save(r'/Users/chenjinlong/Desktop/downloadImage/BLUR.png')
+# 边缘增强
+im.filter(ImageFilter.EDGE_ENHANCE).save(r'/Users/chenjinlong/Desktop/downloadImage/EDGE_ENHANCE.png')
+# 找到边缘
+im.filter(ImageFilter.FIND_EDGES).save(r'/Users/chenjinlong/Desktop/downloadImage/FIND_EDGES.png')
+# 浮雕
+im.filter(ImageFilter.EMBOSS).save(r'/Users/chenjinlong/Desktop/downloadImage/EMBOSS.png')
+# 轮廓
+im.filter(ImageFilter.CONTOUR).save(r'/Users/chenjinlong/Desktop/downloadImage/CONTOUR.png')
+# 锐化
+im.filter(ImageFilter.SHARPEN).save(r'/Users/chenjinlong/Desktop/downloadImage/SHARPEN.png')
+# 平滑
+im.filter(ImageFilter.SMOOTH).save(r'/Users/chenjinlong/Desktop/downloadImage/SMOOTH.png')
+# 细节
+im.filter(ImageFilter.DETAIL).save(r'/Users/chenjinlong/Desktop/downloadImage/DETAIL.png')
