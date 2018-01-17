@@ -5,12 +5,12 @@ from openpyxl import load_workbook
 from openpyxl.styles import PatternFill,Border,Side,Alignment,Protection,Font
 from openpyxl.styles import colors
 from openpyxl.styles import Font
-from python.Image import imgTest
 import os
+from python.Image import imgTest
 
 #http://nullege.com/codes/search/openpyxl.style.Color
 # 打开文档
-fathPath = "/Users/cl/Desktop/icrawlerLearn/myfile"
+fathPath = "jinlong/Desktop/myfile/myexcel.xlsx"
 def testExcel():
     path = "/Users/cl/Desktop/icrawlerLearn/myfile/myexcel.xlsx"
 
